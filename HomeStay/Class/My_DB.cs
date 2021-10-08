@@ -8,29 +8,31 @@ using System.Threading.Tasks;
 
 namespace HomeStay
 {
-    class My_DB
+    public class My_DB
     {
         // Change data source base on your computer
-        SqlConnection con = new SqlConnection("Data Source=(localdb)\\ProjectsV13;Initial Catalog=DB_HomeStay;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        SqlConnection con = new SqlConnection(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=DB_HomeStay;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         public SqlConnection getConnection
         {
             get
             {
-                return con;
+                return this.con;
             }
         }
+
         public void openConnection()
         {
-            if(con.State == ConnectionState.Closed)
+            if(this.con.State == ConnectionState.Closed || this.con.State == ConnectionState.Broken)
             {
-                con.Open();
+                this.con.Open();
             }
         }
+
         public void closeConnection()
         {
-            if(con.State == ConnectionState.Open)
+            if(this.con.State == ConnectionState.Open)
             {
-                con.Close();
+                this.con.Close();
             }
         }
     }

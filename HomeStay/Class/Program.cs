@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HomeStay.CustomerForms;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -28,8 +29,9 @@ namespace HomeStay
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new CustomerInforForm());
         }
+
         private static bool IsServerConnected(My_DB mydb)
         {
             try
