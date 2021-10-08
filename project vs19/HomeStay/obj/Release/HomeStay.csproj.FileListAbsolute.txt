@@ -1,0 +1,15 @@
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Release\HomeStay.csproj.AssemblyReference.cache
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Release\HomeStay.csproj.ResolveComReference.cache
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Release\HomeStay.CustomerForms.BookRoomForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Release\HomeStay.Form1.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Release\HomeStay.Properties.Resources.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Release\HomeStay.RegisterForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Release\HomeStay.csproj.GenerateResource.cache
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Release\HomeStay.csproj.CoreCompileInputs.cache
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\bin\Release\HomeStay.exe.config
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\bin\Release\HomeStay.exe
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\bin\Release\HomeStay.pdb
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\bin\Release\Guna.UI2.dll
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Release\HomeStay.csproj.CopyComplete
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Release\HomeStay.exe
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Release\HomeStay.pdb
