@@ -17,3 +17,25 @@ E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\H
 E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Debug\HomeStay.CustomerForms.HistoryBookingForm.resources
 E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Debug\HomeStay.CustomerForms.CustomerForm.resources
 E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\HomeStay\obj\Debug\HomeStay.CustomerForms.CustomerInforForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\bin\Debug\HomeStay.exe.config
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\bin\Debug\HomeStay.exe
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\bin\Debug\HomeStay.pdb
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\bin\Debug\Guna.UI2.dll
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.csproj.AssemblyReference.cache
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.csproj.ResolveComReference.cache
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.CustomerForms.BookRoomForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.CustomerForms.CheckInCheckOutForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.CustomerForms.CustomerForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.CustomerForms.CustomerInforForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.CustomerForms.HistoryBookingForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.Form1.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.Properties.Resources.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.RegisterForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.csproj.GenerateResource.cache
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.csproj.CoreCompileInputs.cache
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.csproj.CopyComplete
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.exe
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.pdb
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.CustomerForms.ReviewForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.ReceptionistForm.ManagerJanitorForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.ManagerForms.Check_in_outForm.resources

@@ -47,11 +47,6 @@ namespace HomeStay
             }
         }
 
-        private void RegisterForm_Load(object sender, EventArgs e)
-        {
-            this.guestID_TB.Text = (this.customer.getNumOfCustomer() + 1).ToString().Trim();
-        }
-
         private void Log_LLB_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             //LoginForm frm = new LoginForm();
@@ -86,8 +81,10 @@ namespace HomeStay
                     {
                         try
                         {
-                            this.customer.createCustomer(fname, lname, picture, phone, username, pass);
-                            MessageBox.Show("Your account has been created!", "Sign Up", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (this.customer.createCustomer(fname, lname, picture, phone, username, pass))
+                            {
+                                MessageBox.Show("Your account has been created!", "Sign Up", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
                         }
                         catch (Exception ex)
                         {

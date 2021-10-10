@@ -46,7 +46,7 @@ namespace HomeStay.CustomerForms
             this.checkOut_BT.Font = new System.Drawing.Font("Segoe UI", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkOut_BT.ForeColor = System.Drawing.Color.White;
             this.checkOut_BT.HoverState.Parent = this.checkOut_BT;
-            this.checkOut_BT.Location = new System.Drawing.Point(472, 208);
+            this.checkOut_BT.Location = new System.Drawing.Point(532, 208);
             this.checkOut_BT.Margin = new System.Windows.Forms.Padding(2);
             this.checkOut_BT.Name = "checkOut_BT";
             this.checkOut_BT.ShadowDecoration.Parent = this.checkOut_BT;
@@ -107,14 +107,14 @@ namespace HomeStay.CustomerForms
             this.checkInOut_DGV.RowTemplate.ReadOnly = true;
             this.checkInOut_DGV.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.checkInOut_DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.checkInOut_DGV.Size = new System.Drawing.Size(791, 197);
+            this.checkInOut_DGV.Size = new System.Drawing.Size(819, 197);
             this.checkInOut_DGV.TabIndex = 112;
             // 
             // CheckInCheckOutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 278);
+            this.ClientSize = new System.Drawing.Size(834, 278);
             this.Controls.Add(this.checkOut_BT);
             this.Controls.Add(this.checkIn_BT);
             this.Controls.Add(this.checkInOut_DGV);

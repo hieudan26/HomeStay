@@ -34,8 +34,6 @@ namespace HomeStay
             this.reg_BT = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.chophotoT2_BT = new System.Windows.Forms.Button();
-            this.guestID_TB = new Guna.UI2.WinForms.Guna2TextBox();
-            this.emp_id_LB = new System.Windows.Forms.Label();
             this.photoT2_LB = new System.Windows.Forms.Label();
             this.photoT2_PB = new Guna.UI2.WinForms.Guna2PictureBox();
             this.phoneT2_LB = new System.Windows.Forms.Label();
@@ -82,7 +80,7 @@ namespace HomeStay
             // 
             this.Log_LLB.AutoSize = true;
             this.Log_LLB.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Log_LLB.Location = new System.Drawing.Point(222, 439);
+            this.Log_LLB.Location = new System.Drawing.Point(228, 427);
             this.Log_LLB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Log_LLB.Name = "Log_LLB";
             this.Log_LLB.Size = new System.Drawing.Size(196, 20);
@@ -100,7 +98,7 @@ namespace HomeStay
             this.reg_BT.Font = new System.Drawing.Font("Segoe UI", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reg_BT.ForeColor = System.Drawing.Color.White;
             this.reg_BT.HoverState.Parent = this.reg_BT;
-            this.reg_BT.Location = new System.Drawing.Point(10, 467);
+            this.reg_BT.Location = new System.Drawing.Point(11, 458);
             this.reg_BT.Margin = new System.Windows.Forms.Padding(2);
             this.reg_BT.Name = "reg_BT";
             this.reg_BT.ShadowDecoration.Parent = this.reg_BT;
@@ -112,8 +110,6 @@ namespace HomeStay
             // guna2GroupBox2
             // 
             this.guna2GroupBox2.Controls.Add(this.chophotoT2_BT);
-            this.guna2GroupBox2.Controls.Add(this.guestID_TB);
-            this.guna2GroupBox2.Controls.Add(this.emp_id_LB);
             this.guna2GroupBox2.Controls.Add(this.photoT2_LB);
             this.guna2GroupBox2.Controls.Add(this.photoT2_PB);
             this.guna2GroupBox2.Controls.Add(this.phoneT2_LB);
@@ -128,13 +124,13 @@ namespace HomeStay
             this.guna2GroupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
-            this.guna2GroupBox2.Size = new System.Drawing.Size(423, 305);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(423, 301);
             this.guna2GroupBox2.TabIndex = 49;
             this.guna2GroupBox2.Text = "Guest Infomation";
             // 
             // chophotoT2_BT
             // 
-            this.chophotoT2_BT.Location = new System.Drawing.Point(247, 250);
+            this.chophotoT2_BT.Location = new System.Drawing.Point(248, 249);
             this.chophotoT2_BT.Margin = new System.Windows.Forms.Padding(2);
             this.chophotoT2_BT.Name = "chophotoT2_BT";
             this.chophotoT2_BT.Size = new System.Drawing.Size(167, 39);
@@ -143,47 +139,10 @@ namespace HomeStay
             this.chophotoT2_BT.UseVisualStyleBackColor = true;
             this.chophotoT2_BT.Click += new System.EventHandler(this.chophotoT2_BT_Click);
             // 
-            // guestID_TB
-            // 
-            this.guestID_TB.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guestID_TB.DefaultText = "";
-            this.guestID_TB.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guestID_TB.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guestID_TB.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guestID_TB.DisabledState.Parent = this.guestID_TB;
-            this.guestID_TB.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guestID_TB.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guestID_TB.FocusedState.Parent = this.guestID_TB;
-            this.guestID_TB.Font = new System.Drawing.Font("Segoe UI Semibold", 10.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guestID_TB.ForeColor = System.Drawing.Color.Silver;
-            this.guestID_TB.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guestID_TB.HoverState.Parent = this.guestID_TB;
-            this.guestID_TB.Location = new System.Drawing.Point(13, 83);
-            this.guestID_TB.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.guestID_TB.Name = "guestID_TB";
-            this.guestID_TB.PasswordChar = '\0';
-            this.guestID_TB.PlaceholderText = "";
-            this.guestID_TB.SelectedText = "";
-            this.guestID_TB.ShadowDecoration.Parent = this.guestID_TB;
-            this.guestID_TB.Size = new System.Drawing.Size(177, 28);
-            this.guestID_TB.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
-            this.guestID_TB.TabIndex = 26;
-            // 
-            // emp_id_LB
-            // 
-            this.emp_id_LB.AutoSize = true;
-            this.emp_id_LB.ForeColor = System.Drawing.Color.Silver;
-            this.emp_id_LB.Location = new System.Drawing.Point(10, 61);
-            this.emp_id_LB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.emp_id_LB.Name = "emp_id_LB";
-            this.emp_id_LB.Size = new System.Drawing.Size(29, 22);
-            this.emp_id_LB.TabIndex = 25;
-            this.emp_id_LB.Text = "ID";
-            // 
             // photoT2_LB
             // 
             this.photoT2_LB.AutoSize = true;
-            this.photoT2_LB.Location = new System.Drawing.Point(243, 120);
+            this.photoT2_LB.Location = new System.Drawing.Point(244, 78);
             this.photoT2_LB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.photoT2_LB.Name = "photoT2_LB";
             this.photoT2_LB.Size = new System.Drawing.Size(64, 22);
@@ -192,11 +151,11 @@ namespace HomeStay
             // 
             // photoT2_PB
             // 
-            this.photoT2_PB.Location = new System.Drawing.Point(247, 150);
+            this.photoT2_PB.Location = new System.Drawing.Point(247, 112);
             this.photoT2_PB.Margin = new System.Windows.Forms.Padding(2);
             this.photoT2_PB.Name = "photoT2_PB";
             this.photoT2_PB.ShadowDecoration.Parent = this.photoT2_PB;
-            this.photoT2_PB.Size = new System.Drawing.Size(120, 96);
+            this.photoT2_PB.Size = new System.Drawing.Size(167, 117);
             this.photoT2_PB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.photoT2_PB.TabIndex = 22;
             this.photoT2_PB.TabStop = false;
@@ -204,7 +163,7 @@ namespace HomeStay
             // phoneT2_LB
             // 
             this.phoneT2_LB.AutoSize = true;
-            this.phoneT2_LB.Location = new System.Drawing.Point(10, 228);
+            this.phoneT2_LB.Location = new System.Drawing.Point(9, 186);
             this.phoneT2_LB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.phoneT2_LB.Name = "phoneT2_LB";
             this.phoneT2_LB.Size = new System.Drawing.Size(69, 22);
@@ -225,7 +184,7 @@ namespace HomeStay
             this.phoneT2_TB.Font = new System.Drawing.Font("Segoe UI Semibold", 10.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.phoneT2_TB.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.phoneT2_TB.HoverState.Parent = this.phoneT2_TB;
-            this.phoneT2_TB.Location = new System.Drawing.Point(14, 250);
+            this.phoneT2_TB.Location = new System.Drawing.Point(13, 208);
             this.phoneT2_TB.Margin = new System.Windows.Forms.Padding(23, 32, 23, 32);
             this.phoneT2_TB.Name = "phoneT2_TB";
             this.phoneT2_TB.PasswordChar = '\0';
@@ -250,7 +209,7 @@ namespace HomeStay
             this.lnameT2_TB.Font = new System.Drawing.Font("Segoe UI Semibold", 10.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lnameT2_TB.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.lnameT2_TB.HoverState.Parent = this.lnameT2_TB;
-            this.lnameT2_TB.Location = new System.Drawing.Point(13, 193);
+            this.lnameT2_TB.Location = new System.Drawing.Point(12, 151);
             this.lnameT2_TB.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
             this.lnameT2_TB.Name = "lnameT2_TB";
             this.lnameT2_TB.PasswordChar = '\0';
@@ -264,7 +223,7 @@ namespace HomeStay
             // lnameT2_LB
             // 
             this.lnameT2_LB.AutoSize = true;
-            this.lnameT2_LB.Location = new System.Drawing.Point(10, 172);
+            this.lnameT2_LB.Location = new System.Drawing.Point(9, 130);
             this.lnameT2_LB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnameT2_LB.Name = "lnameT2_LB";
             this.lnameT2_LB.Size = new System.Drawing.Size(107, 22);
@@ -285,7 +244,7 @@ namespace HomeStay
             this.fnameT2_TB.Font = new System.Drawing.Font("Segoe UI Semibold", 10.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fnameT2_TB.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.fnameT2_TB.HoverState.Parent = this.fnameT2_TB;
-            this.fnameT2_TB.Location = new System.Drawing.Point(13, 143);
+            this.fnameT2_TB.Location = new System.Drawing.Point(12, 101);
             this.fnameT2_TB.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.fnameT2_TB.Name = "fnameT2_TB";
             this.fnameT2_TB.PasswordChar = '\0';
@@ -299,7 +258,7 @@ namespace HomeStay
             // fnameT2_LB
             // 
             this.fnameT2_LB.AutoSize = true;
-            this.fnameT2_LB.Location = new System.Drawing.Point(10, 120);
+            this.fnameT2_LB.Location = new System.Drawing.Point(9, 78);
             this.fnameT2_LB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.fnameT2_LB.Name = "fnameT2_LB";
             this.fnameT2_LB.Size = new System.Drawing.Size(103, 22);
@@ -372,14 +331,14 @@ namespace HomeStay
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(443, 531);
+            this.ClientSize = new System.Drawing.Size(443, 517);
             this.Controls.Add(this.Log_LLB);
             this.Controls.Add(this.reg_BT);
             this.Controls.Add(this.guna2GroupBox2);
             this.Controls.Add(this.guna2GroupBox1);
             this.Name = "RegisterForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegisterForm";
-            this.Load += new System.EventHandler(this.RegisterForm_Load);
             this.guna2GroupBox2.ResumeLayout(false);
             this.guna2GroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.photoT2_PB)).EndInit();
@@ -397,8 +356,6 @@ namespace HomeStay
         private Guna.UI2.WinForms.Guna2Button reg_BT;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         private System.Windows.Forms.Button chophotoT2_BT;
-        private Guna.UI2.WinForms.Guna2TextBox guestID_TB;
-        private System.Windows.Forms.Label emp_id_LB;
         private System.Windows.Forms.Label photoT2_LB;
         private Guna.UI2.WinForms.Guna2PictureBox photoT2_PB;
         private System.Windows.Forms.Label phoneT2_LB;

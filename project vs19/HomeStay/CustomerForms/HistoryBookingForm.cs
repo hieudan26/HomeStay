@@ -39,7 +39,9 @@ namespace HomeStay.CustomerForms
             this.history_DGV.Columns[3].HeaderText = "Date Out Book";
             this.history_DGV.Columns[4].HeaderText = "Check In";
             this.history_DGV.Columns[5].HeaderText = "Check Out";
-            this.history_DGV.Columns[6].HeaderText = "Payment";
+            this.history_DGV.Columns[6].HeaderText = "Room Price";
+            this.history_DGV.Columns[7].HeaderText = "Overdue Fee";
+            this.history_DGV.Columns[8].HeaderText = "Payment Total";
         }
     }
 }

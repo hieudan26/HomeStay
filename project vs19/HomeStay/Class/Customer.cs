@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace HomeStay.Class
 {
     class Customer : My_DB
-    {
+    {//tao trong day ko save =)
         public DataTable getInfoCustomerByRoomID(int room_id)
         {
             SqlCommand com = new SqlCommand();
@@ -106,10 +106,12 @@ namespace HomeStay.Class
 
         public bool createCustomer(string fname, string lname, MemoryStream pic, string phn, string uname, string pwd)
         {
+            SqlCommand com = new SqlCommand();
             try
             {
                 //Call stored procedures to insert new customer into Customers table
-                SqlCommand com = new SqlCommand("dbo.Procedure_addNewCustomer", this.getConnection);
+                com.CommandText = "dbo.Procedure_addNewCustomer";
+                com.Connection = this.getConnection;
                 com.CommandType = CommandType.StoredProcedure;
 
                 com.Parameters.Add("@fname", SqlDbType.NVarChar).Value = fname;
@@ -119,7 +121,7 @@ namespace HomeStay.Class
                 com.Parameters.Add("@username", SqlDbType.NVarChar).Value = uname;
                 com.Parameters.Add("@passwd", SqlDbType.NVarChar).Value = pwd;
                 this.openConnection();
-                if (com.ExecuteNonQuery() == 1)
+                if (com.ExecuteNonQuery() == -1)
                 {
                     com.Parameters.Clear();
                     this.closeConnection();
@@ -131,13 +133,12 @@ namespace HomeStay.Class
                     this.closeConnection();
                     return false;
                 }
-                //com.Connection = mydb.getConnection;
-                //com.Parameters.Add("@id", SqlDbType.Int).Value = id;
             }
-            catch
+            catch (Exception ex)
             {
+                com.Parameters.Clear();
                 this.closeConnection();
-                MessageBox.Show("Error can't create new customer", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error can't create new customer\n" + ex.Message, "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
         }

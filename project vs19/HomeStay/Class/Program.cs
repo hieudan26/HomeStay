@@ -1,4 +1,5 @@
 ﻿using HomeStay.CustomerForms;
+using HomeStay.ReceptionistForm;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -16,23 +17,23 @@ namespace HomeStay
         [STAThread]
         static void Main()
         {
-            /*My_DB mydb = new My_DB();
+            My_DB mydb = new My_DB();
             
-            if(IsServerConnected(mydb))
+            /*if(IsServerConnected(mydb))
             {
                 Console.WriteLine("Connected!");
             }
             else
             {
-                Console.WriteLine("Not Yet Connected!");
-            }*/
+                Console.WriteLine("Not Yet Connected!");*/
+
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CustomerInforForm());
+            Application.Run(new CustomerForm());
         }
-
-        private static bool IsServerConnected(My_DB mydb)
+        
+        /*private static bool IsServerConnected(My_DB mydb)
         {
             try
             {
@@ -43,6 +44,6 @@ namespace HomeStay
             {
                     return false;
              }
-        }
+        }*/
     }
 }

@@ -24,7 +24,7 @@ namespace HomeStay.CustomerForms
         private void CheckInCheckOutForm_Load(object sender, EventArgs e)
         {
             //Warning: set cứng///////
-            Globals.SetGlobalUserId(9179);
+            Globals.SetGlobalUserId(2186);
             //////////////////////////
             ///
             this.checkInOut_DGV.DataSource = this.booking.getBooking(Globals.GlobalUserId);
@@ -67,6 +67,7 @@ namespace HomeStay.CustomerForms
         {
             try
             {
+                int booking_id = int.Parse(this.checkInOut_DGV.Rows[0].Cells[0].Value.ToString().Trim());
                 if (this.checkInOut_DGV.Rows[0].Cells[4].Value.ToString().Trim() == "")
                 {
                     MessageBox.Show("You Need To Check In First!", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -74,7 +75,6 @@ namespace HomeStay.CustomerForms
                 }
                 else
                 {
-                    int booking_id = int.Parse(this.checkInOut_DGV.Rows[0].Cells[0].Value.ToString().Trim());
                     DateTime now = DateTime.Now;
                     if (now.ToString("MM/dd/yyyy").CompareTo(DateTime.Parse(this.checkInOut_DGV.Rows[0].Cells[3].Value.ToString().Trim()).ToString("MM/dd/yyyy")) <= 0)
                     {
@@ -107,6 +107,8 @@ namespace HomeStay.CustomerForms
                     }
                     this.checkInOut_DGV.DataSource = this.booking.getBooking(Globals.GlobalUserId);
                 }
+                ReviewForm frm = new ReviewForm(booking_id, Globals.GlobalUserId);
+                frm.Show();
             }
             catch { }
         }

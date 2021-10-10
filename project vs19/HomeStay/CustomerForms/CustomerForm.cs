@@ -23,7 +23,7 @@ namespace HomeStay.CustomerForms
         private void book_BT_Click(object sender, EventArgs e)
         {
             this.Width = 1050;
-            this.Height = 540;
+            this.Height = 580;
             BookRoomForm frm = new BookRoomForm();
             frm.MdiParent = this.ParentForm;
             frm.TopLevel = false;
@@ -53,7 +53,7 @@ namespace HomeStay.CustomerForms
         private void CustomerForm_Load(object sender, EventArgs e)
         {
             //Warning: set cứng///////
-            Globals.SetGlobalUserId(9179);
+            Globals.SetGlobalUserId(2165);
             //////////////////////////
             ///
             DataTable dt = this.customer.getInfoCustomers(Globals.GlobalUserId);
@@ -96,7 +96,7 @@ namespace HomeStay.CustomerForms
 
         private void mngHis_BT_Click(object sender, EventArgs e)
         {
-            this.Width = 850;
+            this.Width = 1025;
             this.Height = 330;
             HistoryBookingForm frm = new HistoryBookingForm();
             frm.MdiParent = this.ParentForm;

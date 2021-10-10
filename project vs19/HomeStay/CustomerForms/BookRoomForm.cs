@@ -26,35 +26,41 @@ namespace HomeStay.CustomerForms
 
         private void bookRoom_BT_Click(object sender, EventArgs e)
         {
-            int room_id = int.Parse(roomID_TB.Text.Trim());
-
-            //get price by type room
-            decimal price = 0;
-            try
+            if (this.roomID_TB.Text.Trim() != "")
             {
-                MessageBox.Show("" + this.room_type_id);
-                price = this.room.getPriceofRoom_byTypeId(this.room_type_id);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Book Room", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                int room_id = int.Parse(this.roomID_TB.Text.Trim());
 
-            //Warning: set cứng///////
-            Globals.SetGlobalUserId(9179);
-            //////////////////////////
+                //get price by type room
+                decimal price = 0;
+                try
+                {
+                    price = this.room.getPriceofRoom_byTypeId(this.room_type_id);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Book Room", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
-            if (this.booking.createBooking(Globals.GlobalUserId, room_id, this.booking_DTP.Value, this.return_DTP.Value, price))
-            {
+                //Warning: set cứng///////
+                Globals.SetGlobalUserId(2186);
+                //////////////////////////
 
-                this.room.updateStatus(Convert.ToInt32(room_DGV.CurrentRow.Cells[0].Value), true);
-                this.reloadDGV();
-                this.roomID_TB.Text = "";
-                MessageBox.Show("Successful", "Book Room", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                if (this.booking.createBooking(Globals.GlobalUserId, room_id, this.booking_DTP.Value, this.return_DTP.Value, price))
+                {
+
+                    this.room.updateStatus(Convert.ToInt32(room_DGV.CurrentRow.Cells[0].Value), true);
+                    this.reloadDGV();
+                    this.roomID_TB.Text = "";
+                    MessageBox.Show("Successful", "Book Room", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Fail to book", "Book Room", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }    
             else
             {
-                MessageBox.Show("Fail To Book", "Book Room", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Choose room which you want to book", "Book Room", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -66,7 +72,7 @@ namespace HomeStay.CustomerForms
             this.return_DTP.CustomFormat = "dd/MM/yyyy";
 
             //Warning: set cứng///////
-            Globals.SetGlobalUserId(9179);
+            Globals.SetGlobalUserId(2186);
             //////////////////////////
 
             DataTable dt = this.customer.getInfoCustomers(Globals.GlobalUserId);
@@ -95,7 +101,7 @@ namespace HomeStay.CustomerForms
             }
             this.reloadDGV();
         }
-
+        //này ko có soa ko nói =) dgv có filter sẵn rồi luuw vô đâu ?
         private void reloadDGV()
         {
             this.room_DGV.DataSource = this.room.getAllRooms();
@@ -123,7 +129,7 @@ namespace HomeStay.CustomerForms
 
         private void room_DGV_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (room_DGV.CurrentRow.Cells[5].Value.ToString().Trim() == "Full")
+            if (this.room_DGV.CurrentRow.Cells[5].Value.ToString().Trim() == "Full")
             {
                 MessageBox.Show("This Room Was Booked By Some One Else. Please Choose Another Room That Empty", "Book Room", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.roomID_TB.Text = "";
@@ -131,6 +137,32 @@ namespace HomeStay.CustomerForms
             }
             else
                 this.roomID_TB.Text = this.room_DGV.CurrentRow.Cells[0].Value.ToString().Trim();
+        }
+
+        private void filter_CBO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.search_TB_TextChanged(null, null);
+        }
+
+        private void search_TB_TextChanged(object sender, EventArgs e)
+        {
+            string colName = filter_CBO.SelectedItem.ToString();
+            if (colName == "Room ID")
+                colName = "room_id";
+            else if (colName == "Name")
+                colName = "type_name";
+            else if (colName == "Capacity")
+                colName = "room_capacity";
+            else if (colName == "Bed")
+                colName = "room_bed";
+            else if (colName == "Price")
+                colName = "room_price";
+            this.searchData(colName, this.search_TB.Text.Trim());
+        }
+
+        private void searchData(string colName, string valueToFind)
+        {
+            this.room_DGV.DataSource = this.room.searchData(colName, valueToFind);
         }
     }
 }
