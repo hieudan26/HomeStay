@@ -681,3 +681,280 @@ BEGIN
 	END;
 	return @result
 END;
+
+/****************************/
+/****************************/
+/****************************/
+/****************************/
+/****************************/
+CREATE TRIGGER [Trigger_CheckinBeforeCheckout]
+	ON [dbo].[CheckInOut]
+	FOR UPDATE
+	AS
+	DECLARE @time_in AS TIME(7)
+    SELECT @time_in = i.time_in
+	 FROM CheckInOut i
+    IF (@time_in is null)
+    BEGIN
+        SET NOCOUNT ON
+		RAISERROR ('You have to checkin first' , 16, 1)
+		ROLLBACK TRANSACTION;
+    END
+
+/****************************/
+
+CREATE TRIGGER [Trigger_CheckinLate]
+	ON [dbo].[CheckInOut]
+	FOR INSERT, UPDATE
+	AS
+	DECLARE @time_start AS TIME(7), @time_in AS TIME(7), @old_time_in as Time(7)
+    SELECT @time_start = i.time_start, @time_in = i.time_in, @old_time_in = d.time_in
+	 FROM INSERTED i, DELETED d
+    IF (@time_in >= @time_start and @old_time_in is null)
+    BEGIN
+        SET NOCOUNT ON
+		RAISERROR ('Hurry up! You are late.' , 16, 1)
+    END
+
+/****************************/
+
+CREATE TRIGGER [Trigger_Checkout_beforeStart]
+	ON [dbo].[CheckInOut]
+	FOR UPDATE
+	AS
+	DECLARE @time_s AS TIME(7), @time_out AS TIME(7), @time_w as time(7)
+    SELECT @time_out = i.time_out, @time_w = i.time_worked
+	 FROM INSERTED i
+	Select @time_s = time_start from CheckInOut
+    IF (@time_out < @time_s or @time_w < '00:00:00')
+    BEGIN
+        SET NOCOUNT ON
+		RAISERROR ('You cannot check out before the time your shift start.' , 16, 1)
+		ROLLBACK TRANSACTION;
+    END
+
+/****************************/
+
+CREATE   PROCEDURE [dbo].[Procedure_insertCheckInData] 
+	   @day						 DATE,
+       @emp_id                   INT, 
+	   @shift_name               NVARCHAR(30), 
+	   @time_start               TIME(7), 
+	   @time_end                 TIME(7), 
+	   @time_in					 TIME(7)
+AS 
+BEGIN 
+     SET NOCOUNT ON 
+     INSERT INTO dbo.CheckInOut
+          (              
+            day,                  
+            emp_id,                      
+            shift_name,
+			time_start,
+			time_end,
+			time_in
+          ) 
+     VALUES 
+          ( 
+	   @day,
+       @emp_id, 
+	   @shift_name, 
+	   @time_start, 
+	   @time_end, 
+	   @time_in	
+          ) 
+END
+
+/****************************/
+
+CREATE   PROCEDURE [dbo].[Procedure_insertCheckOutData] 
+       @emp_id      INT,
+       @day         DATE,
+       @shift_name  NVARCHAR(30),
+       @time_out    TIME(7),
+       @time_worked TIME(7)
+AS 
+BEGIN 
+     Update CheckInOut Set time_out = @time_out, time_worked = @time_worked
+     Where emp_id=@emp_id and day=@day and shift_name=@shift_name
+END
+
+/****************************/
+
+CREATE   PROCEDURE [dbo].[Procedure_updateCheckInData] 
+       @booking_id INT,
+       @checkin    NVARCHAR(20)
+AS 
+BEGIN 
+     UPDATE dbo.Booking
+     SET checkin = @checkin
+     WHERE booking_id = @booking_id
+END
+
+/****************************/
+
+CREATE   PROCEDURE [dbo].[Procedure_updateCheckOutData] 
+       @booking_id INT,
+       @checkout   NVARCHAR(20)
+AS 
+BEGIN 
+     UPDATE dbo.Booking
+     SET checkout = @checkout
+     WHERE booking_id = @booking_id
+     AND checkout IS NULL
+END
+
+/****************************/
+
+CREATE FUNCTION [dbo].[Function_getDataCheckInCheckOut]
+(
+	@emp_id INT
+)
+RETURNS @returnTable TABLE
+(
+	day DATE,
+	shift_name NVARCHAR(30),
+	time_start TIME(7),
+	time_end TIME(7),
+	time_in TIME(7),
+	time_out TIME(7),
+	time_worked TIME(7)
+)
+AS
+BEGIN
+	INSERT @returnTable
+	Select day, shift_name, time_start, time_end, time_in, time_out, time_worked From CheckInOut Where emp_id=@emp_id
+	RETURN
+END
+
+/****************************/
+
+CREATE FUNCTION [dbo].[Function_getDataCheckInCheckOutWith] 
+(
+    @emp_id         INT,
+    @day            DATE
+)
+RETURNS @returnTable TABLE
+(
+	emp_id      INT,
+    day         DATE,
+    shift_name  NVARCHAR(30),
+    time_start  TIME(7),
+    time_end    TIME(7),
+    time_in     TIME(7),
+    time_out    TIME(7),
+    time_worked TIME(7)
+)
+AS
+BEGIN
+    INSERT @returnTable
+    Select emp_id, day, shift_name, time_start, time_end, time_in, time_out, time_worked 
+    From CheckInOut Where emp_id=@emp_id and day=@day
+    RETURN
+END
+
+
+/****************************/
+
+CREATE FUNCTION [dbo].[Function_getDateStartEnd]
+(
+	@tnow DATETIME
+)
+RETURNS @returnTable TABLE
+(
+	set_id INT,
+	date_start DATE,
+	date_end DATE
+)
+AS
+BEGIN
+	INSERT @returnTable
+	SELECT DISTINCT set_id, date_start, date_end from  Schedules
+	WHERE date_start <= @tnow and date_end >= @tnow
+	RETURN
+END
+
+/****************************/
+
+CREATE FUNCTION [dbo].[Function_getScheduleByUserId]
+(
+	@tnow DATETIME,
+	@emp_id INT
+)
+RETURNS @returnTable TABLE
+(
+	Monday NVARCHAR(20),
+	Tuesday NVARCHAR(20), 
+	Wednesday NVARCHAR(20), 
+	Thursday NVARCHAR(20), 
+	Friday NVARCHAR(20), 
+	Saturday NVARCHAR(20), 
+	Sunday NVARCHAR(20)
+)
+AS
+BEGIN
+	INSERT @returnTable
+	select Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday from  Schedules
+	where Schedules.emp_id = @emp_id
+	and date_start <= @tnow and date_end >= @tnow
+	RETURN
+END
+
+/****************************/
+
+CREATE FUNCTION [dbo].[Function_getShiftTimeByUserId]
+(
+	@tnow DATETIME,
+	@emp_id INT
+)
+RETURNS @returnTable TABLE
+(
+	shift_name NVARCHAR(20),
+	time_start TIME(7),
+	time_end TIME(7),
+	no_manager INT,
+	no_receptionist INT,
+	no_janitor INT
+)
+AS
+BEGIN
+	INSERT @returnTable
+	Select shift_name, time_start, time_end, no_manager, no_receptionist, no_janitor From Settings Where set_id=
+(select distinct set_id from Schedules Where Schedules.emp_id = @emp_id and @tnow BETWEEN date_start And date_end)
+	RETURN
+END
+
+/****************************/
+
+CREATE FUNCTION [dbo].[Function_isCheckedin]
+(
+	@emp_id INT,
+	@day DATE,
+	@shift_name NVARCHAR(30)
+)
+RETURNS INTEGER
+AS 
+BEGIN 
+	DECLARE @count INTEGER
+	SET @count = (Select Count(*) From CheckInOut Where emp_id=@emp_id 
+					and day=@day and shift_name=@shift_name
+					and time_in is not null)
+	RETURN @count
+END;
+
+/****************************/
+
+CREATE FUNCTION [dbo].[Function_isExist]
+(
+	@emp_id INT,
+	@day DATE,
+	@shift_name NVARCHAR(30)
+)
+RETURNS INTEGER
+AS 
+BEGIN 
+	DECLARE @count INTEGER
+	SET @count = (Select Count(*) From CheckInOut Where emp_id=@emp_id 
+					and day=@day and shift_name=@shift_name)
+	RETURN @count
+END;

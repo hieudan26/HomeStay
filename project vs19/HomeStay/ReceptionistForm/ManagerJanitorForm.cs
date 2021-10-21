@@ -47,6 +47,30 @@ namespace HomeStay.ReceptionistForm
             picCol = (DataGridViewImageColumn)this.employee_DGV.Columns[7];
             picCol.ImageLayout = DataGridViewImageCellLayout.Stretch;
             this.employee_DGV.AllowUserToAddRows = false;
+
+            if (this.employee_DGV.DataSource != null)
+            {
+                this.loadDataCellZero();
+            }
+        }
+
+        private void loadDataCellZero()
+        {
+            this.empID_TB.Text = this.employee_DGV.Rows[0].Cells[0].Value.ToString();
+            this.fnameT2_TB.Text = this.employee_DGV.Rows[0].Cells[1].Value.ToString();
+            this.lnameT2_TB.Text = this.employee_DGV.Rows[0].Cells[2].Value.ToString();
+            this.emailT2_TB.Text = this.employee_DGV.Rows[0].Cells[3].Value.ToString();
+            this.genderT2_CBO.SelectedItem = this.employee_DGV.Rows[0].Cells[5].Value;
+            this.bdateT2_DTP.Value = (DateTime)this.employee_DGV.Rows[0].Cells[4].Value;
+
+            this.titleT2_CBO.SelectedItem = this.employee_DGV.Rows[0].Cells[6].Value;
+            this.phoneT2_TB.Text = employee_DGV.Rows[0].Cells[8].Value.ToString();
+
+            //này mở ra khi có ảnh t chỉ check thôi nên ko add đc ảnh
+            byte[] pic;
+            //pic = (byte[])employee_DGV.CurrentRow.Cells[7].Value;
+            //MemoryStream picture = new MemoryStream(pic);
+            //this.photoT2_PB.Image = Image.FromStream(picture);
         }
 
         private void filter_CBO_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,6 +119,8 @@ namespace HomeStay.ReceptionistForm
             
             this.titleT2_CBO.SelectedItem = this.employee_DGV.CurrentRow.Cells[6].Value;
             this.phoneT2_TB.Text = employee_DGV.CurrentRow.Cells[8].Value.ToString();
+
+            //này mở ra khi có ảnh t chỉ check thôi nên ko add đc ảnh
             byte[] pic;
             //pic = (byte[])employee_DGV.CurrentRow.Cells[7].Value;
             //MemoryStream picture = new MemoryStream(pic);

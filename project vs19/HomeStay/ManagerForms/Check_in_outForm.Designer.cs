@@ -147,6 +147,7 @@ namespace HomeStay.ManagerForms
             this.checkOut_BT.Size = new System.Drawing.Size(206, 64);
             this.checkOut_BT.TabIndex = 113;
             this.checkOut_BT.Text = "Check Out";
+            this.checkOut_BT.Click += new System.EventHandler(this.checkOut_BT_Click);
             // 
             // checkIn_BT
             // 
@@ -164,6 +165,7 @@ namespace HomeStay.ManagerForms
             this.checkIn_BT.Size = new System.Drawing.Size(205, 64);
             this.checkIn_BT.TabIndex = 112;
             this.checkIn_BT.Text = "Check In";
+            this.checkIn_BT.Click += new System.EventHandler(this.checkIn_BT_Click);
             // 
             // shifts_DGV
             // 

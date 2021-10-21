@@ -39,3 +39,5 @@ E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\p
 E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.CustomerForms.ReviewForm.resources
 E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.ReceptionistForm.ManagerJanitorForm.resources
 E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.ManagerForms.Check_in_outForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.ManagerForms.ManagerForm.resources
+E:\HK1_Nam3\Hệ quản trị cơ sở dữ liệu\Final-Project\Final-project\project vs19\HomeStay\obj\Debug\HomeStay.ManagerForms.ManageEmployeesForm.resources

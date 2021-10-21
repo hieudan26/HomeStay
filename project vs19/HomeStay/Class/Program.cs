@@ -1,4 +1,5 @@
 ﻿using HomeStay.CustomerForms;
+using HomeStay.ManagerForms;
 using HomeStay.ReceptionistForm;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace HomeStay
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CustomerForm());
+            Application.Run(new ManageEmployeesForm());
         }
         
         /*private static bool IsServerConnected(My_DB mydb)
