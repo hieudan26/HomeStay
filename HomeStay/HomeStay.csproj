@@ -49,7 +49,65 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Account.cs" />
+    <Compile Include="Class\Booking.cs" />
+    <Compile Include="Class\CheckInOut.cs" />
+    <Compile Include="Class\Customer.cs" />
+    <Compile Include="Class\Employee.cs" />
+    <Compile Include="Class\Globals.cs" />
     <Compile Include="Class\My_DB.cs" />
+    <Compile Include="Class\Review.cs" />
+    <Compile Include="Class\Room.cs" />
+    <Compile Include="Class\Schedule.cs" />
+    <Compile Include="Class\Setting.cs" />
+    <Compile Include="CustomerForms\BookRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerForms\BookRoomForm.designer.cs">
+      <DependentUpon>BookRoomForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerForms\CheckInCheckOutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerForms\CheckInCheckOutForm.designer.cs">
+      <DependentUpon>CheckInCheckOutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerForms\CustomerInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerForms\CustomerInfoForm.designer.cs">
+      <DependentUpon>CustomerInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerForms\editInfoCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerForms\editInfoCustomerForm.Designer.cs">
+      <DependentUpon>editInfoCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerForms\GuestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerForms\GuestForm.designer.cs">
+      <DependentUpon>GuestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerForms\HistoryBookingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerForms\HistoryBookingForm.designer.cs">
+      <DependentUpon>HistoryBookingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerForms\ReviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerForms\ReviewForm.Designer.cs">
+      <DependentUpon>ReviewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="editInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editInfoForm.designer.cs">
+      <DependentUpon>editInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,9 +115,165 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\Program.cs" />
+    <Compile Include="JanitorForms\CleanRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JanitorForms\CleanRoom.Designer.cs">
+      <DependentUpon>CleanRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JanitorForms\JanitorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JanitorForms\JanitorForm.Designer.cs">
+      <DependentUpon>JanitorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceptionistForms\ManagerJanitorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReceptionistForms\ManagerJanitorForm.designer.cs">
+      <DependentUpon>ManagerJanitorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerForms\Check_in_outForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerForms\Check_in_outForm.designer.cs">
+      <DependentUpon>Check_in_outForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerForms\GenerateScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerForms\GenerateScheduleForm.Designer.cs">
+      <DependentUpon>GenerateScheduleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerForms\ManageEmployeesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerForms\ManageEmployeesForm.designer.cs">
+      <DependentUpon>ManageEmployeesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerForms\ManageReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerForms\ManageReportForm.Designer.cs">
+      <DependentUpon>ManageReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerForms\ManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerForms\ManagerForm.designer.cs">
+      <DependentUpon>ManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerForms\ManageRoomsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerForms\ManageRoomsForm.designer.cs">
+      <DependentUpon>ManageRoomsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerForms\ManageRoomTypesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerForms\ManageRoomTypesForm.designer.cs">
+      <DependentUpon>ManageRoomTypesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerForms\ManagerScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerForms\ManagerScheduleForm.Designer.cs">
+      <DependentUpon>ManagerScheduleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceptionistForms\ManageRoomByReceptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReceptionistForms\ManageRoomByReceptForm.designer.cs">
+      <DependentUpon>ManageRoomByReceptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceptionistForms\ManageScheduleByReceptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReceptionistForms\ManageScheduleByReceptForm.Designer.cs">
+      <DependentUpon>ManageScheduleByReceptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceptionistForms\ReceptionistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReceptionistForms\ReceptionistForm.designer.cs">
+      <DependentUpon>ReceptionistForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterForm.designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CustomerForms\BookRoomForm.resx">
+      <DependentUpon>BookRoomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerForms\CheckInCheckOutForm.resx">
+      <DependentUpon>CheckInCheckOutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerForms\CustomerInfoForm.resx">
+      <DependentUpon>CustomerInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerForms\editInfoCustomerForm.resx">
+      <DependentUpon>editInfoCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerForms\GuestForm.resx">
+      <DependentUpon>GuestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerForms\HistoryBookingForm.resx">
+      <DependentUpon>HistoryBookingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerForms\ReviewForm.resx">
+      <DependentUpon>ReviewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="editInfoForm.resx">
+      <DependentUpon>editInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JanitorForms\CleanRoom.resx">
+      <DependentUpon>CleanRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JanitorForms\JanitorForm.resx">
+      <DependentUpon>JanitorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceptionistForms\ManagerJanitorForm.resx">
+      <DependentUpon>ManagerJanitorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerForms\Check_in_outForm.resx">
+      <DependentUpon>Check_in_outForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerForms\GenerateScheduleForm.resx">
+      <DependentUpon>GenerateScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerForms\ManageEmployeesForm.resx">
+      <DependentUpon>ManageEmployeesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerForms\ManageReportForm.resx">
+      <DependentUpon>ManageReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerForms\ManagerForm.resx">
+      <DependentUpon>ManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerForms\ManageRoomsForm.resx">
+      <DependentUpon>ManageRoomsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerForms\ManageRoomTypesForm.resx">
+      <DependentUpon>ManageRoomTypesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerForms\ManagerScheduleForm.resx">
+      <DependentUpon>ManagerScheduleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -70,6 +284,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReceptionistForms\ManageRoomByReceptForm.resx">
+      <DependentUpon>ManageRoomByReceptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceptionistForms\ManageScheduleByReceptForm.resx">
+      <DependentUpon>ManageScheduleByReceptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceptionistForms\ReceptionistForm.resx">
+      <DependentUpon>ReceptionistForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterForm.resx">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,12 +319,36 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VSTOEE100">
+      <Guid>{AAB9C2AA-6036-4AE1-A41C-A40AB7F39520}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CustomerForms\" />
-    <Folder Include="JanitorForms\" />
-    <Folder Include="ManagerForms\" />
-    <Folder Include="ReceptionistForms\" />
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Image\01.jpg" />
