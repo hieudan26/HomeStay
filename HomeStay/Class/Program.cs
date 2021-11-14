@@ -19,9 +19,9 @@ namespace HomeStay
         [STAThread]
         static void Main()
         {
-            My_DB mydb = new My_DB();
+            
 
-            if (IsServerConnected(mydb))
+            if (IsServerConnected())
             {
                 Console.WriteLine("Connected!");
             }
@@ -34,11 +34,11 @@ namespace HomeStay
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
         }
-        private static bool IsServerConnected(My_DB mydb)
+        private static bool IsServerConnected()
         {
             try
             {
-                mydb.openConnection();
+                My_DB.openConnection();
                 return true;
             }
             catch (SqlException)

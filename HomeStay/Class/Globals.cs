@@ -24,5 +24,10 @@ namespace HomeStay.Class
         {
             GlobalDataTableOver = dt;
         }
+        public static int GlobalBookingId { get; private set; }
+        public static void SetGlobalBookingId(int bid)
+        {
+            GlobalBookingId = bid;
+        }
     }
 }

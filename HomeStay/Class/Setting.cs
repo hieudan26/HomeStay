@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HomeStay.Class
 {
-    class Setting: My_DB
+    class Setting
     {
         public static int needed_emp;
         public static int emps;
@@ -18,7 +18,6 @@ namespace HomeStay.Class
         public static int[,,] res;
         public static int[] list_id_emps;
         Employee emp = new Employee();
-        My_DB mydb = new My_DB();
         SqlCommand com = new SqlCommand();
         public int numOfSetting()
         {
@@ -27,12 +26,12 @@ namespace HomeStay.Class
             com.CommandText = "dbo.func_getNumOfSetting";
             com.CommandType = CommandType.StoredProcedure;
 
-            com.Connection = mydb.getConnection;
-            mydb.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             com.Parameters.Add("@num", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             com.ExecuteNonQuery();
             int num = Convert.ToInt32(com.Parameters["@num"].Value);
-            mydb.closeConnection();
+            My_DB.closeConnection();
 
             com.Parameters.Clear();
             com.CommandType = CommandType.Text;
@@ -41,7 +40,7 @@ namespace HomeStay.Class
         public bool addShift(int set_num, string name, TimeSpan time_start, TimeSpan time_end, int no_manager, int no_recept, int no_janitor)
         {
 
-            SqlCommand com = new SqlCommand("addNewSetting", mydb.getConnection);
+            SqlCommand com = new SqlCommand("addNewSetting", My_DB.getConnection);
             com.CommandType = CommandType.StoredProcedure;
             int shift_num = this.getShiftNumWithSetNum(set_num) + 1;
 
@@ -53,17 +52,17 @@ namespace HomeStay.Class
             com.Parameters.Add("@no_manager", SqlDbType.Int).Value = no_manager;
             com.Parameters.Add("@no_recept", SqlDbType.Int).Value = no_recept;
             com.Parameters.Add("@no_janitor", SqlDbType.Int).Value = no_janitor;
-            mydb.openConnection();
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == 1)
             {
                 com.Parameters.Clear();
-                mydb.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                mydb.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -74,13 +73,13 @@ namespace HomeStay.Class
             com.CommandText = "dbo.func_getShiftNumWithSetNum";
             com.CommandType = CommandType.StoredProcedure;
 
-            com.Connection = mydb.getConnection;
-            mydb.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             com.Parameters.Add("@set_id", SqlDbType.Int).Value = set_num;
             com.Parameters.Add("@num", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             com.ExecuteNonQuery();
             int num = Convert.ToInt32(com.Parameters["@num"].Value);
-            mydb.closeConnection();
+            My_DB.closeConnection();
 
             com.Parameters.Clear();
             com.CommandType = CommandType.Text;
@@ -92,7 +91,7 @@ namespace HomeStay.Class
             com.CommandText = "dbo.proc_allSettingId";
             com.CommandType = CommandType.StoredProcedure;
 
-            com.Connection = mydb.getConnection;
+            com.Connection = My_DB.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -117,7 +116,7 @@ namespace HomeStay.Class
             }*/
             com.Parameters.Add("@shid", SqlDbType.Int).Value = shift_id;
             com.Parameters.Add("@set_id", SqlDbType.Int).Value = set_id;
-            com.Connection = mydb.getConnection;
+            com.Connection = My_DB.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);

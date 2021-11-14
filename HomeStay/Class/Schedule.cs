@@ -9,9 +9,8 @@ using System.Windows.Forms;
 
 namespace HomeStay.Class
 {
-    class Schedule: My_DB
+    class Schedule
     {
-        My_DB mydb = new My_DB();
         SqlCommand com = new SqlCommand();
         // da sua
         public int getNumScheduleGenBySet(int set_id)
@@ -21,12 +20,12 @@ namespace HomeStay.Class
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@set_id", SqlDbType.Int).Value = set_id;
 
-            com.Connection = mydb.getConnection;
-            mydb.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             com.Parameters.Add("@num", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             com.ExecuteNonQuery();
             int num = Convert.ToInt32(com.Parameters["@num"].Value); 
-            mydb.closeConnection();
+            My_DB.closeConnection();
 
             com.Parameters.Clear();
             com.CommandType = CommandType.Text;
@@ -40,12 +39,12 @@ namespace HomeStay.Class
             com.CommandText = "dbo.func_getNumOfSchedule";
             com.CommandType = CommandType.StoredProcedure;
 
-            com.Connection = mydb.getConnection;
-            mydb.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             com.Parameters.Add("@num", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             com.ExecuteNonQuery();
             int num = Convert.ToInt32(com.Parameters["@num"].Value);
-            mydb.closeConnection();
+            My_DB.closeConnection();
 
             com.Parameters.Clear();
             com.CommandType = CommandType.Text;
@@ -59,10 +58,10 @@ namespace HomeStay.Class
             com.CommandText = "Select Count(*) From Schedules Where @dend >= date_start AND @dstart <= date_end";
             com.Parameters.Add("@dstart", SqlDbType.DateTime).Value = dstart;
             com.Parameters.Add("@dend", SqlDbType.DateTime).Value = dend;
-            com.Connection = mydb.getConnection;
-            mydb.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             int num = (int)com.ExecuteScalar();
-            mydb.closeConnection();
+            My_DB.closeConnection();
             com.Parameters.Clear();
             if (num > 0)
                 return true;
@@ -74,7 +73,7 @@ namespace HomeStay.Class
         {
             com.CommandText = "dbo.proc_addSchedule";
             com.CommandType = CommandType.StoredProcedure;
-            com.Connection = mydb.getConnection;
+            com.Connection = My_DB.getConnection;
             com.Parameters.Add("@sch_id", SqlDbType.Int).Value = id;
             com.Parameters.Add("@set_id", SqlDbType.Int).Value = set_id;
             com.Parameters.Add("@eid", SqlDbType.Int).Value = emp_id;
@@ -87,18 +86,18 @@ namespace HomeStay.Class
             com.Parameters.Add("@fday", SqlDbType.NVarChar).Value = Friday;
             com.Parameters.Add("@satday", SqlDbType.NVarChar).Value = Saturday;
             com.Parameters.Add("@sunday", SqlDbType.NVarChar).Value = Sunday;
-            mydb.openConnection();
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == 1)
             {
                 com.Parameters.Clear();
-                mydb.closeConnection();
+                My_DB.closeConnection();
                 com.CommandType = CommandType.Text;
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                mydb.closeConnection();
+                My_DB.closeConnection();
                 com.CommandType = CommandType.Text;
                 return false;
             }
@@ -109,7 +108,7 @@ namespace HomeStay.Class
             com.CommandText = "dbo.proc_getTimeSchedule";
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@date", SqlDbType.DateTime).Value = date;
-            com.Connection = mydb.getConnection;
+            com.Connection = My_DB.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -122,7 +121,7 @@ namespace HomeStay.Class
         {
             com.CommandText = "Select * FROM ScheduleInfoByDate(@date)";
             com.Parameters.Add("@date", SqlDbType.DateTime).Value = date;
-            com.Connection = mydb.getConnection;
+            com.Connection = My_DB.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -137,7 +136,7 @@ namespace HomeStay.Class
 
             com.Parameters.Add("@date", SqlDbType.DateTime).Value = date;
             com.Parameters.Add("@dayName", SqlDbType.NVarChar).Value = dayName;
-            com.Connection = mydb.getConnection;
+            com.Connection = My_DB.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -151,7 +150,7 @@ namespace HomeStay.Class
         {
             com.CommandText = $"Select * FROM ScheduleInfoByDate(@date) WHERE {colName} LIKE '%" + valueToFind + "%'";
             com.Parameters.Add("@date", SqlDbType.DateTime).Value = date;
-            com.Connection = mydb.getConnection;
+            com.Connection = My_DB.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -166,12 +165,12 @@ namespace HomeStay.Class
                 command.CommandText = "select * from [dbo].[Function_getScheduleByUserId](@tnow, @emp_id)";
                 command.Parameters.Add("@emp_id", SqlDbType.Int).Value = emp_id;
                 command.Parameters.Add("@tnow", SqlDbType.DateTime).Value = tnow;
-                command.Connection = this.getConnection;
+                command.Connection = My_DB.getConnection;
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable table = new DataTable();
                 adapter.Fill(table);
                 command.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return table;
             }
             catch (Exception ex)
@@ -179,7 +178,7 @@ namespace HomeStay.Class
                 MessageBox.Show("Error can't get schedule by user id\n" + ex.Message, "Schedule", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             command.Parameters.Clear();
-            this.closeConnection();
+            My_DB.closeConnection();
             return null;
         }
         public DataTable getDateStartEnd(DateTime tnow)
@@ -189,12 +188,12 @@ namespace HomeStay.Class
             {
                 command.CommandText = "Select * from [dbo].[Function_getDateStartEnd](@tnow)";
                 command.Parameters.Add("@tnow", SqlDbType.DateTime).Value = tnow;
-                command.Connection = this.getConnection;
+                command.Connection = My_DB.getConnection;
                 SqlDataAdapter da = new SqlDataAdapter(command);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 command.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return dt;
             }
             catch (Exception ex)
@@ -202,7 +201,7 @@ namespace HomeStay.Class
                 MessageBox.Show("Error can't get date start end\n" + ex.Message, "Schedule", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             command.Parameters.Clear();
-            this.closeConnection();
+            My_DB.closeConnection();
             return null;
         }
         public DataTable getShiftInfoBySetId(DateTime tnow)
@@ -211,12 +210,12 @@ namespace HomeStay.Class
             command.CommandText = "proc_getSettingInfoWithSetIdFromSchedule";
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.Add("@tnow", SqlDbType.DateTime).Value = tnow;
-            command.Connection = this.getConnection;
+            command.Connection = My_DB.getConnection;
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             DataTable table = new DataTable();
             adapter.Fill(table);
             command.Parameters.Clear();
-            this.closeConnection();
+            My_DB.closeConnection();
             return table;
         }
     }

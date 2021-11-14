@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace HomeStay.Class
 {
-    class Room : My_DB
+    class Room
     {
 
         public DataTable searchData(string colName, string valueToFind)
@@ -20,18 +20,18 @@ namespace HomeStay.Class
                 com.CommandText = "SELECT * FROM [dbo].[Function_searchData_Room](@colName, @valueToFind)";
                 com.Parameters.Add("@colName", SqlDbType.NVarChar).Value = colName;
                 com.Parameters.Add("@valueToFind", SqlDbType.NVarChar).Value = valueToFind;
-                com.Connection = this.getConnection;
+                com.Connection = My_DB.getConnection;
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return dt;
             }
             catch (Exception e)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 MessageBox.Show("Error can't search data of room\n" + e.Message, "Employee", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return null;
@@ -42,12 +42,12 @@ namespace HomeStay.Class
             decimal num = -1;
             SqlCommand com = new SqlCommand();
             com.CommandText = "SELECT dbo.Function_getPriceRoom_byTypeId(@room_type_id)";
-            com.Connection = this.getConnection;
+            com.Connection = My_DB.getConnection;
             com.Parameters.Add("@room_type_id", SqlDbType.Int).Value = room_type_id;
-            this.openConnection();
+            My_DB.openConnection();
             num = (decimal)com.ExecuteScalar();
             com.Parameters.Clear();
-            this.closeConnection();
+            My_DB.closeConnection();
             return num;
         }
 
@@ -58,15 +58,15 @@ namespace HomeStay.Class
             try
             {
                 com.CommandText = "SELECT dbo.Function_getRoomtype_byRoomID(@room_id)";
-                com.Connection = this.getConnection;
+                com.Connection = My_DB.getConnection;
                 com.Parameters.Add("@room_id", SqlDbType.Int).Value = room_id;
-                this.openConnection();
+                My_DB.openConnection();
                 result = (int)com.ExecuteScalar();
-                this.closeConnection();
+                My_DB.closeConnection();
             }
             catch (Exception e)
             {
-                this.closeConnection();
+                My_DB.closeConnection();
                 com.Parameters.Clear();
                 MessageBox.Show("Error can't get roomtype" + e.Message, "Room", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -79,29 +79,29 @@ namespace HomeStay.Class
             try
             {
                 com.CommandText = "dbo.Procedure_updateStatusofRoom";
-                com.Connection = this.getConnection;
+                com.Connection = My_DB.getConnection;
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.Add("@room_id", SqlDbType.Int).Value = room_id;
                 com.Parameters.Add("@room_status", SqlDbType.Bit).Value = room_status;
                 com.Parameters.Add("@clean_status", SqlDbType.Bit).Value = clean_status;
-                this.openConnection();
+                My_DB.openConnection();
 
                 if (com.ExecuteNonQuery() == 1)
                 {
                     com.Parameters.Clear();
-                    this.closeConnection();
+                    My_DB.closeConnection();
                     return true;
                 }
                 else
                 {
                     com.Parameters.Clear();
-                    this.closeConnection();
+                    My_DB.closeConnection();
                     return false;
                 }
             }
             catch (Exception e)
             {
-                this.closeConnection();
+                My_DB.closeConnection();
                 com.Parameters.Clear();
                 MessageBox.Show("Error can't update status of room" + e.Message, "Room", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -115,18 +115,18 @@ namespace HomeStay.Class
             {
                 com.CommandText = "SELECT * FROM dbo.Function_getAllRooms_byTypes(@rtype)";//And Rooms.room_status = RoomStats.room_status and Rooms.room_status=0
                 com.Parameters.Add("@rtype", SqlDbType.NVarChar).Value = rtype;
-                com.Connection = this.getConnection;
-                openConnection();
+                com.Connection = My_DB.getConnection;
+                My_DB.openConnection();
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                this.closeConnection();
+                My_DB.closeConnection();
                 com.Parameters.Clear();
                 return dt;
             }
             catch
             {
-                this.closeConnection();
+                My_DB.closeConnection();
                 com.Parameters.Clear();
                 MessageBox.Show("Error can't get all room have type: " + rtype, "Room", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -137,24 +137,24 @@ namespace HomeStay.Class
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "SELECT * FROM dbo.Function_getAllRooms()";
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            this.closeConnection();
+            My_DB.closeConnection();
             return dt;
         }
         public DataTable getAllRooms()
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "SELECT * FROM dbo.Function_getAllInfoRooms()";
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            this.closeConnection();
+            My_DB.closeConnection();
             return dt;
         }
         public DataTable getRoomType()
@@ -163,18 +163,18 @@ namespace HomeStay.Class
             try
             {
                 com.CommandText = "SELECT * FROM dbo.Function_getRoomType()";
-                com.Connection = this.getConnection;
-                this.openConnection();
+                com.Connection = My_DB.getConnection;
+                My_DB.openConnection();
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                this.closeConnection();
+                My_DB.closeConnection();
                 com.Parameters.Clear();
                 return dt;
             }
             catch
             {
-                this.closeConnection();
+                My_DB.closeConnection();
                 com.Parameters.Clear();
                 MessageBox.Show("Error can't get all type have already in system", "Room", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -187,12 +187,12 @@ namespace HomeStay.Class
             com.CommandText = "proc_getInfoRoomByType";
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@rtid", SqlDbType.Int).Value = rtid;
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            this.closeConnection();
+            My_DB.closeConnection();
             return dt;
         }
         public bool insertRoom(int rtid)
@@ -201,18 +201,18 @@ namespace HomeStay.Class
             com.CommandText = "proc_insertRoom";
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@rtid", SqlDbType.Int).Value = rtid;
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == 1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -224,18 +224,18 @@ namespace HomeStay.Class
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@rid", SqlDbType.Int).Value = rid;
             com.Parameters.Add("@sttname", SqlDbType.NVarChar).Value = status_name;
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == 1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -244,8 +244,8 @@ namespace HomeStay.Class
             SqlCommand com = new SqlCommand();
             com.CommandText = "proc_getAllRoomTypes";
             com.CommandType = CommandType.StoredProcedure;
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -260,18 +260,18 @@ namespace HomeStay.Class
             com.Parameters.Add("@rc", SqlDbType.Int).Value = capacity;
             com.Parameters.Add("@rnb", SqlDbType.Int).Value = bed;
             com.Parameters.Add("@rp", SqlDbType.Int).Value = price;
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == 1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -281,10 +281,10 @@ namespace HomeStay.Class
             com.CommandText = "proc_numOfRoomType";
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@num", SqlDbType.Int).Direction = ParameterDirection.Output;
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             int num = Convert.ToInt32(com.Parameters["@num"].Value);
-            this.closeConnection();
+            My_DB.closeConnection();
             return num;
 
         }
@@ -295,18 +295,18 @@ namespace HomeStay.Class
             com.CommandText = $"proc_deleteRoomType";
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@rtn", SqlDbType.NVarChar).Value = roomType;
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == 1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -314,8 +314,8 @@ namespace HomeStay.Class
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "SELECT * FROM func_getDirtyRoom()";
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -329,18 +329,18 @@ namespace HomeStay.Class
             com.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
             com.Parameters.Add("@eid", SqlDbType.Int).Value = emp_id;
             com.Parameters.Add("@rid", SqlDbType.Int).Value = room_id;
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == 1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -349,8 +349,8 @@ namespace HomeStay.Class
             SqlCommand com = new SqlCommand();
             com.CommandText = "SELECT * FROM func_getDirtyRoomInfoWithJanitorID(@eid)";
             com.Parameters.Add("@eid", SqlDbType.Int).Value = eid;
-            com.Connection = this.getConnection;
-            this.openConnection();
+            com.Connection = My_DB.getConnection;
+            My_DB.openConnection();
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);

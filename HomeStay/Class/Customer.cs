@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace HomeStay.Class
 {
-    class Customer : My_DB
-    {//tao trong day ko save =)
+    class Customer
+    {
         public DataTable getInfoCustomerByRoomID(int room_id)
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "SELECT * FROM dbo.Function_getInfoCustomerByRoomID(@room_id)";
             com.Parameters.Add("@room_id", SqlDbType.Int).Value = room_id;
-            com.Connection = this.getConnection;
+            com.Connection = My_DB.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
             com.Parameters.Clear();
-            this.closeConnection();
+            My_DB.closeConnection();
             return dt;
         }
 
@@ -32,11 +32,11 @@ namespace HomeStay.Class
             bool result = false;
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT dbo.Function_checkUsernameExisted(@username)", this.getConnection);
+                SqlCommand cmd = new SqlCommand("SELECT dbo.Function_checkUsernameExisted(@username)", My_DB.getConnection);
                 cmd.Parameters.Add("@username", SqlDbType.NVarChar).Value = username;
-                this.openConnection();
+                My_DB.openConnection();
                 int userExisted = (int)cmd.ExecuteScalar();
-                this.closeConnection();
+                My_DB.closeConnection();
                 if (userExisted == 0)
                 {
                     result = false;
@@ -45,7 +45,7 @@ namespace HomeStay.Class
             }
             catch (Exception)
             {
-                this.closeConnection();
+                My_DB.closeConnection();
                 MessageBox.Show("Error can't check username", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return result;
@@ -56,9 +56,9 @@ namespace HomeStay.Class
         {
             try
             {
-                SqlCommand com = new SqlCommand("SELECT * FROM dbo.Function_getCustomerbyID(@customer_id)", this.getConnection);
+                SqlCommand com = new SqlCommand("SELECT * FROM dbo.Function_getCustomerbyID(@customer_id)", My_DB.getConnection);
                 com.Parameters.Add("@customer_id", SqlDbType.Int).Value = customer_id;
-                com.Connection = this.getConnection;
+                com.Connection = My_DB.getConnection;
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -67,7 +67,7 @@ namespace HomeStay.Class
             }
             catch
             {
-                this.closeConnection();
+                My_DB.closeConnection();
                 MessageBox.Show("Error can't get information about customer", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return null;
@@ -79,16 +79,16 @@ namespace HomeStay.Class
             try
             {
                 //Call function have any statement
-                SqlCommand com = new SqlCommand("SELECT dbo.Function_countCustomers()", this.getConnection);
-                this.openConnection();
+                SqlCommand com = new SqlCommand("SELECT dbo.Function_countCustomers()", My_DB.getConnection);
+                My_DB.openConnection();
                 int num = (int)com.ExecuteScalar();
-                this.closeConnection();
+                My_DB.closeConnection();
                 //Console.WriteLine(num);
                 result = num;
             }
             catch
             {
-                this.closeConnection();
+                My_DB.closeConnection();
                 MessageBox.Show("Error can't count quantity of customer", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return result;
@@ -98,7 +98,7 @@ namespace HomeStay.Class
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "dbo.Proc_addNewCustomer";
-            com.Connection = this.getConnection;
+            com.Connection = My_DB.getConnection;
             com.CommandType = CommandType.StoredProcedure;
 
             com.Parameters.Add("@fname", SqlDbType.NVarChar).Value = fname;
@@ -110,17 +110,17 @@ namespace HomeStay.Class
             com.Parameters.Add("@phone", SqlDbType.NVarChar).Value = phn;
             com.Parameters.Add("@username", SqlDbType.NVarChar).Value = uname;
             com.Parameters.Add("@passwd", SqlDbType.NVarChar).Value = pwd;
-            this.openConnection();
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == -1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -128,7 +128,7 @@ namespace HomeStay.Class
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "dbo.Proc_editCustomer";
-            com.Connection = this.getConnection;
+            com.Connection = My_DB.getConnection;
             com.CommandType = CommandType.StoredProcedure;
 
             com.Parameters.Add("@cid", SqlDbType.Int).Value = cid;
@@ -141,17 +141,17 @@ namespace HomeStay.Class
             com.Parameters.Add("@phone", SqlDbType.NVarChar).Value = phn;
             com.Parameters.Add("@username", SqlDbType.NVarChar).Value = uname;
             com.Parameters.Add("@passwd", SqlDbType.NVarChar).Value = pwd;
-            this.openConnection();
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == -1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }

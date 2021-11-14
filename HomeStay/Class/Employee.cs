@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace HomeStay.Class
 {
-    class Employee: My_DB
+    class Employee
     {
-        My_DB mydb = new My_DB();
         public DataTable getEmployees(SqlCommand com)
         {
-            com.Connection = mydb.getConnection;
+            com.Connection = My_DB.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -23,7 +22,7 @@ namespace HomeStay.Class
         }
         public Boolean insertEmployee(string fname, string lname, string email, string title, string gender, DateTime bdate, string phone, MemoryStream picture, string username, string password, string repassword)
         {
-            SqlCommand com = new SqlCommand("dbo.prod_insert_Employee_Account", mydb.getConnection);
+            SqlCommand com = new SqlCommand("dbo.prod_insert_Employee_Account", My_DB.getConnection);
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@firstname", SqlDbType.NVarChar).Value = fname;
             com.Parameters.Add("@lastname", SqlDbType.NVarChar).Value = lname;
@@ -40,25 +39,25 @@ namespace HomeStay.Class
             com.Parameters.Add("@password", SqlDbType.NVarChar).Value = password;
             com.Parameters.Add("@repassword", SqlDbType.NVarChar).Value = repassword;
 
-            mydb.openConnection();
+            My_DB.openConnection();
             int num = com.ExecuteNonQuery();
             Console.WriteLine(num);
             if (num > 0)
             {
                 com.Parameters.Clear();
-                mydb.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                mydb.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
         public bool updateEmployee(int id, string fname, string lname, string email, string title, string gender, DateTime bdate, string phone, MemoryStream picture)
         {
-            SqlCommand com = new SqlCommand("prod_editEmployees", mydb.getConnection);
+            SqlCommand com = new SqlCommand("prod_editEmployees", My_DB.getConnection);
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@emp_id", SqlDbType.Int).Value = id;
             com.Parameters.Add("@firstname", SqlDbType.NVarChar).Value = fname;
@@ -73,18 +72,18 @@ namespace HomeStay.Class
                 com.Parameters.Add("@photo", SqlDbType.Image).Value = DBNull.Value;
             com.Parameters.Add("@phone", SqlDbType.NVarChar).Value = phone;
 
-            mydb.openConnection();
+            My_DB.openConnection();
             int num = com.ExecuteNonQuery();
             if (num > 0)
             {
                 com.Parameters.Clear();
-                mydb.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                mydb.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -92,16 +91,16 @@ namespace HomeStay.Class
         {
             try
             {
-                SqlCommand com = new SqlCommand("dbo.prod_delete_Employee_Account", mydb.getConnection);
+                SqlCommand com = new SqlCommand("dbo.prod_delete_Employee_Account", My_DB.getConnection);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.Add("@emp_id", SqlDbType.Int).Value = emp_id;
                 com.Parameters.Add("@acc_id", SqlDbType.Int).Value = acc_id;
                 Console.WriteLine(com.CommandText);
-                mydb.openConnection();
+                My_DB.openConnection();
                 if (com.ExecuteNonQuery() > 0)
                 {
                     com.Parameters.Clear();
-                    mydb.closeConnection();
+                    My_DB.closeConnection();
                     return true;
                 }
                 com.Parameters.Clear();
@@ -112,36 +111,36 @@ namespace HomeStay.Class
             }
             finally
             {
-                mydb.closeConnection();
+                My_DB.closeConnection();
             }
 
             return false;
         }
         public int countEmployeesByTitle(string title)
         {
-            SqlCommand com = new SqlCommand("dbo.func_countEmployeesHasTitle", mydb.getConnection);
+            SqlCommand com = new SqlCommand("dbo.func_countEmployeesHasTitle", My_DB.getConnection);
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@title", SqlDbType.NVarChar).Value = title;
             com.Parameters.Add("@@count", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
-            mydb.openConnection();
+            My_DB.openConnection();
             com.ExecuteNonQuery();
 
             int count = Convert.ToInt32(com.Parameters["@@count"].Value);
-            mydb.closeConnection();
+            My_DB.closeConnection();
             com.Parameters.Clear();
             return count;
         }
         //tam thoi
         public int numOfEmployees()
         {
-            SqlCommand com = new SqlCommand("dbo.func_countEmployees", mydb.getConnection);
+            SqlCommand com = new SqlCommand("dbo.func_countEmployees", My_DB.getConnection);
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@@count", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
-            mydb.openConnection();
+            My_DB.openConnection();
             com.ExecuteNonQuery();
 
             int count = Convert.ToInt32(com.Parameters["@@count"].Value);
-            mydb.closeConnection();
+            My_DB.closeConnection();
             com.Parameters.Clear();
             return count;
         }

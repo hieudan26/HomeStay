@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace HomeStay.Class
 {
-    class Booking: My_DB
+    class Booking
     {
-        My_DB mydb = new My_DB();
         SqlCommand com = new SqlCommand();
         // FOR MANAGER FORM
         public DataTable getBookingHistory(DateTime dstart, DateTime dend)
@@ -20,7 +19,7 @@ namespace HomeStay.Class
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@dstart", SqlDbType.DateTime).Value = dstart;
             com.Parameters.Add("@dend", SqlDbType.DateTime).Value = dend;
-            com.Connection = mydb.getConnection;
+            com.Connection = My_DB.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -33,7 +32,7 @@ namespace HomeStay.Class
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@dstart", SqlDbType.DateTime).Value = dstart;
             com.Parameters.Add("@dend", SqlDbType.DateTime).Value = dend;
-            com.Connection = mydb.getConnection;
+            com.Connection = My_DB.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -45,7 +44,7 @@ namespace HomeStay.Class
             com.CommandText = "proc_getBookingOverdue";
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@today", SqlDbType.DateTime).Value = DateTime.Now;
-            com.Connection = mydb.getConnection;
+            com.Connection = My_DB.getConnection;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -57,7 +56,7 @@ namespace HomeStay.Class
             bool result = false;
             SqlCommand com = new SqlCommand();
             com.CommandText = "dbo.Proc_createBooking";
-            com.Connection = this.getConnection;
+            com.Connection = My_DB.getConnection;
             com.CommandType = CommandType.StoredProcedure;
 
             com.Parameters.Add("@customer_id", SqlDbType.Int).Value = customer_id;
@@ -68,17 +67,17 @@ namespace HomeStay.Class
             com.Parameters.Add("@amount", SqlDbType.Decimal).Value = amount;
 
             com.Parameters.Add("@overdue_fee", SqlDbType.Decimal).Value = overdue_fee;
-            this.openConnection();
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == -1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 result = true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 result = false;
             }
             return result;
@@ -87,34 +86,34 @@ namespace HomeStay.Class
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "SELECT * FROM dbo.Function_getBooking(@customer_id)";
-            com.Connection = this.getConnection;
+            com.Connection = My_DB.getConnection;
             com.Parameters.Add("@customer_id", SqlDbType.Int).Value = customer_id;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
             com.Parameters.Clear();
-            this.closeConnection();
+            My_DB.closeConnection();
             return dt;
         }
         public bool insertCheckInData(int booking_id, DateTime checkin)
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "dbo.Proc_updateCheckInData";
-            com.Connection = this.getConnection;
+            com.Connection = My_DB.getConnection;
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@booking_id", SqlDbType.Int).Value = booking_id;
             com.Parameters.Add("@checkin", SqlDbType.DateTime).Value = checkin;
-            this.openConnection();
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == 1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -122,22 +121,22 @@ namespace HomeStay.Class
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "dbo.Proc_updateOverdue_fee";
-            com.Connection = this.getConnection;
+            com.Connection = My_DB.getConnection;
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@booking_id", SqlDbType.Int).Value = booking_id;
             com.Parameters.Add("@overdue_fee", SqlDbType.Decimal).Value = overdue_fee;
-            this.openConnection();
+            My_DB.openConnection();
 
             if (com.ExecuteNonQuery() == 1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -145,21 +144,21 @@ namespace HomeStay.Class
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "dbo.proc_updateOverDueBooking";
-            com.Connection = this.getConnection;
+            com.Connection = My_DB.getConnection;
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@today", SqlDbType.DateTime).Value = DateTime.Now;
-            this.openConnection();
+            My_DB.openConnection();
 
             if (com.ExecuteNonQuery() == 1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -167,21 +166,21 @@ namespace HomeStay.Class
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "dbo.Proc_updateCheckOutData";
-            com.Connection = this.getConnection;
+            com.Connection = My_DB.getConnection;
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.Add("@booking_id", SqlDbType.Int).Value = booking_id;
             com.Parameters.Add("@checkout", SqlDbType.DateTime).Value = checkout;
-            this.openConnection();
+            My_DB.openConnection();
             if (com.ExecuteNonQuery() == 1)
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return true;
             }
             else
             {
                 com.Parameters.Clear();
-                this.closeConnection();
+                My_DB.closeConnection();
                 return false;
             }
         }
@@ -189,13 +188,13 @@ namespace HomeStay.Class
         {
             SqlCommand com = new SqlCommand();
             com.CommandText = "SELECT * FROM dbo.Function_getAllHistoryBooking_byID(@customer_id)";
-            com.Connection = this.getConnection;
+            com.Connection = My_DB.getConnection;
             com.Parameters.Add("@customer_id", SqlDbType.Int).Value = customer_id;
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
             com.Parameters.Clear();
-            this.closeConnection();
+            My_DB.closeConnection();
             return dt;
         }
 
