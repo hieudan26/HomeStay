@@ -33,6 +33,8 @@ namespace HomeStay.ManagerForms
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -53,6 +55,9 @@ namespace HomeStay.ManagerForms
             this.showCheckInOutHis = new Guna.UI2.WinForms.Guna2Button();
             this.label4 = new System.Windows.Forms.Label();
             this.dateStartPage2_DTP = new System.Windows.Forms.DateTimePicker();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.exportPage3_BT = new Guna.UI2.WinForms.Guna2Button();
+            this.Review_DGV = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -60,12 +65,15 @@ namespace HomeStay.ManagerForms
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkInOutHis_DGV)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Review_DGV)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Century Gothic", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -359,6 +367,72 @@ namespace HomeStay.ManagerForms
             this.dateStartPage2_DTP.Size = new System.Drawing.Size(238, 43);
             this.dateStartPage2_DTP.TabIndex = 111;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.exportPage3_BT);
+            this.tabPage3.Controls.Add(this.Review_DGV);
+            this.tabPage3.Location = new System.Drawing.Point(8, 50);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1376, 916);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Manage Review";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // exportPage3_BT
+            // 
+            this.exportPage3_BT.BorderRadius = 3;
+            this.exportPage3_BT.CheckedState.Parent = this.exportPage3_BT;
+            this.exportPage3_BT.CustomImages.Parent = this.exportPage3_BT;
+            this.exportPage3_BT.FillColor = System.Drawing.Color.SteelBlue;
+            this.exportPage3_BT.Font = new System.Drawing.Font("Segoe UI", 10.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportPage3_BT.ForeColor = System.Drawing.Color.White;
+            this.exportPage3_BT.HoverState.Parent = this.exportPage3_BT;
+            this.exportPage3_BT.Location = new System.Drawing.Point(28, 805);
+            this.exportPage3_BT.Name = "exportPage3_BT";
+            this.exportPage3_BT.ShadowDecoration.Parent = this.exportPage3_BT;
+            this.exportPage3_BT.Size = new System.Drawing.Size(1320, 90);
+            this.exportPage3_BT.TabIndex = 135;
+            this.exportPage3_BT.Text = "Export To FIle";
+            // 
+            // Review_DGV
+            // 
+            this.Review_DGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Review_DGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.Review_DGV.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(206)))), ((int)(((byte)(247)))));
+            this.Review_DGV.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.Review_DGV.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(113)))), ((int)(((byte)(227)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(113)))), ((int)(((byte)(227)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Review_DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.Review_DGV.ColumnHeadersHeight = 40;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Review_DGV.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Review_DGV.EnableHeadersVisualStyles = false;
+            this.Review_DGV.Location = new System.Drawing.Point(28, 30);
+            this.Review_DGV.Name = "Review_DGV";
+            this.Review_DGV.RowHeadersVisible = false;
+            this.Review_DGV.RowHeadersWidth = 82;
+            this.Review_DGV.RowTemplate.DividerHeight = 1;
+            this.Review_DGV.RowTemplate.Height = 40;
+            this.Review_DGV.RowTemplate.ReadOnly = true;
+            this.Review_DGV.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Review_DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Review_DGV.Size = new System.Drawing.Size(1320, 760);
+            this.Review_DGV.TabIndex = 134;
+            this.Review_DGV.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Review_DGV_CellMouseDoubleClick);
+            // 
             // ManageReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -378,6 +452,8 @@ namespace HomeStay.ManagerForms
             ((System.ComponentModel.ISupportInitialize)(this.checkInOutHis_DGV)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Review_DGV)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -404,5 +480,8 @@ namespace HomeStay.ManagerForms
         private Guna.UI2.WinForms.Guna2Button showCheckInOutHis;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateStartPage2_DTP;
+        private System.Windows.Forms.TabPage tabPage3;
+        private Guna.UI2.WinForms.Guna2Button exportPage3_BT;
+        public System.Windows.Forms.DataGridView Review_DGV;
     }
 }

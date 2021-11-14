@@ -16,6 +16,7 @@ namespace HomeStay.CustomerForms
     public partial class CustomerInfoForm : Form
     {
         private Customer customer = new Customer();
+        private Review review = new Review();
         private int room_id;
         public CustomerInfoForm(int room_id)
         {
@@ -30,8 +31,16 @@ namespace HomeStay.CustomerForms
             this.cin_DTP.CustomFormat = "dd/MM/yyyy";
             this.cout_DTP.Format = DateTimePickerFormat.Custom;
             this.cout_DTP.CustomFormat = "dd/MM/yyyy";
-
-            DataTable dt = this.customer.getInfoCustomerByRoomID(this.room_id);
+            
+            DataTable dt;
+            if(this.room_id == -1)
+            {
+                dt = this.review.getInfoBookingByID(Globals.GlobalBookingId); 
+            }
+            else
+            {
+                dt = this.customer.getInfoCustomerByRoomID(this.room_id);
+            }
             this.usernameT2_TB.Text = dt.Rows[0][5].ToString();
             this.passwordT2_TB.Text = dt.Rows[0][6].ToString();
             this.guestID_TB.Text = dt.Rows[0][0].ToString();

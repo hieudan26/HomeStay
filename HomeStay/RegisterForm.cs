@@ -15,7 +15,6 @@ namespace HomeStay
 {
     public partial class RegisterForm : Form
     {
-        private My_DB my_DB = new My_DB();
         private Customer customer = new Customer();
 
         public RegisterForm()

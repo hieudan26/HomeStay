@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Microsoft.Office.Interop.Word;
 using DataTable = System.Data.DataTable;
 using System.Data.SqlClient;
+using HomeStay.CustomerForms;
 
 namespace HomeStay.ManagerForms
 {
@@ -18,6 +19,7 @@ namespace HomeStay.ManagerForms
     {
         Booking booking = new Booking();
         CheckInOut ck = new CheckInOut();
+        Review review = new Review();
         public ManageReportForm()
         {
             InitializeComponent();
@@ -203,30 +205,46 @@ namespace HomeStay.ManagerForms
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if (tabControl1.SelectedTab == tabControl1.TabPages[1])
             {
-                DataTable dt = ck.getDataCheckInCheckOut(dateStartPage2_DTP.Value, dateEndPage2_DTP.Value);
-                checkInOutHis_DGV.DataSource = dt;
-                checkInOutHis_DGV.AllowUserToAddRows = false;
-                checkInOutHis_DGV.ReadOnly = true;
+                try
+                {
+                    DataTable dt = ck.getDataCheckInCheckOut(dateStartPage2_DTP.Value, dateEndPage2_DTP.Value);
+                    checkInOutHis_DGV.DataSource = dt;
+                    checkInOutHis_DGV.AllowUserToAddRows = false;
+                    checkInOutHis_DGV.ReadOnly = true;
 
-                checkInOutHis_DGV.Columns[0].HeaderText = "Employee ID";
-                checkInOutHis_DGV.Columns[1].HeaderText = "First Name";
-                checkInOutHis_DGV.Columns[2].HeaderText = "Last Name";
-                checkInOutHis_DGV.Columns[3].HeaderText = "Date";
-                checkInOutHis_DGV.Columns[4].HeaderText = "Shift";
-                checkInOutHis_DGV.Columns[5].HeaderText = "Time Start";
-                checkInOutHis_DGV.Columns[5].DefaultCellStyle.Format = "hh\\:mm";
-                checkInOutHis_DGV.Columns[6].DefaultCellStyle.Format = "hh\\:mm";
-                checkInOutHis_DGV.Columns[6].HeaderText = "Time End";
-                checkInOutHis_DGV.Columns[7].HeaderText = "Time In";
-                checkInOutHis_DGV.Columns[8].HeaderText = "Time Out";
-                checkInOutHis_DGV.Columns[9].HeaderText = "Time Worked";
+                    checkInOutHis_DGV.Columns[0].HeaderText = "Employee ID";
+                    checkInOutHis_DGV.Columns[1].HeaderText = "First Name";
+                    checkInOutHis_DGV.Columns[2].HeaderText = "Last Name";
+                    checkInOutHis_DGV.Columns[3].HeaderText = "Date";
+                    checkInOutHis_DGV.Columns[4].HeaderText = "Shift";
+                    checkInOutHis_DGV.Columns[5].HeaderText = "Time Start";
+                    checkInOutHis_DGV.Columns[5].DefaultCellStyle.Format = "hh\\:mm";
+                    checkInOutHis_DGV.Columns[6].DefaultCellStyle.Format = "hh\\:mm";
+                    checkInOutHis_DGV.Columns[6].HeaderText = "Time End";
+                    checkInOutHis_DGV.Columns[7].HeaderText = "Time In";
+                    checkInOutHis_DGV.Columns[8].HeaderText = "Time Out";
+                    checkInOutHis_DGV.Columns[9].HeaderText = "Time Worked";
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Errors[0].Class == 16)
+                        MessageBox.Show(ex.Errors[0].Message, "Invalid DateTime", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (SqlException ex)
+            else if(tabControl1.SelectedTab == tabControl1.TabPages[2])
             {
-                if (ex.Errors[0].Class == 16)
-                    MessageBox.Show(ex.Errors[0].Message, "Invalid DateTime", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DataTable dt = review.getData();
+                Review_DGV.DataSource = dt;
+                Review_DGV.AllowUserToAddRows = false;
+                Review_DGV.ReadOnly = true;
+
+                Review_DGV.Columns[0].HeaderText = "Booking ID";
+                Review_DGV.Columns[1].HeaderText = "Room ID";
+                Review_DGV.Columns[2].HeaderText = "Customer ID";
+                Review_DGV.Columns[3].HeaderText = "Comment";
+                Review_DGV.Columns[4].HeaderText = "Rating";
             }
                 
         }
@@ -234,6 +252,13 @@ namespace HomeStay.ManagerForms
         private void showCheckInOutHis_Click(object sender, EventArgs e)
         {
             tabControl1_SelectedIndexChanged(null, null);
+        }
+
+        private void Review_DGV_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            Globals.SetGlobalBookingId(Convert.ToInt32(Review_DGV.CurrentRow.Cells[0].Value));
+            CustomerInfoForm frm = new CustomerInfoForm(-1);
+            frm.Show();
         }
     }
 }

@@ -83,6 +83,16 @@ namespace HomeStay
             if (user_id > 0)
             {
                 MessageBox.Show("Login Successful");
+                try
+                {
+                    My_DB.grantPermission(username, password, title);
+                    My_DB.con = new SqlConnection(My_DB.makeURL(username, password));
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
                 Globals.SetGlobalUserId(user_id);
                 this.Hide();
 
