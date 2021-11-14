@@ -167,7 +167,16 @@ namespace HomeStay.ManagerForms
                         else
                         {
                             TimeSpan twork = TimeSpan.Parse(row["time_end"].ToString()).Subtract(TimeSpan.Parse(row["time_start"].ToString()));
-                            cio.insertCheckOutData(Globals.GlobalUserId, dateAndTime.Date, row["shift_name"].ToString(), time_now, twork);
+                            try
+                            {
+                                cio.insertCheckOutData(Globals.GlobalUserId, dateAndTime.Date, row["shift_name"].ToString(), time_now, twork);
+
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show(ex.Errors[0].Message, "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
                             checkInOut_DGV.DataSource = cio.getDataCheckInCheckOut(Globals.GlobalUserId);
                             MessageBox.Show("Check Out Successful.", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }

@@ -52,7 +52,7 @@ namespace HomeStay.CustomerForms
             }
             catch(SqlException ex)
             {
-                MessageBox.Show("Cannot Check In!", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Errors[0].Message, "Check In", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
