@@ -31,6 +31,8 @@ namespace HomeStay.ManagerForms
         {
             bdate_DTP.Format = DateTimePickerFormat.Custom;
             bdate_DTP.CustomFormat = "dd/MM/yyyy";
+            title_CBO.SelectedIndex = 0;
+            gender_CBO.SelectedIndex = 0;
         }
         private void chophoto_BT_Click(object sender, EventArgs e)
         {

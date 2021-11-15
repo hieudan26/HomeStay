@@ -132,7 +132,8 @@ namespace HomeStay.ManagerForms
 
         private void del_BT_Click(object sender, EventArgs e)
         {
-            setting_DGV.Rows.RemoveAt(setting_DGV.CurrentRow.Index);
+            if(setting_DGV.RowCount > 0)
+                setting_DGV.Rows.RemoveAt(setting_DGV.CurrentRow.Index);
         }
 
         private void edit_BT_Click(object sender, EventArgs e)
@@ -167,32 +168,35 @@ namespace HomeStay.ManagerForms
         }
         private void applySetting_BT_Click(object sender, EventArgs e)
         {
-            int set_num = setting.numOfSetting() + 1;
-            foreach (DataGridViewRow row in setting_DGV.Rows)
+            if(setting_DGV.RowCount > 0)
             {
-                if (!row.IsNewRow)
+                int set_num = setting.numOfSetting() + 1;
+                foreach (DataGridViewRow row in setting_DGV.Rows)
                 {
-                    string name = row.Cells[0].Value.ToString();
-                    TimeSpan time_start = TimeSpan.Parse(row.Cells[1].Value.ToString());
-                    TimeSpan time_end = TimeSpan.Parse(row.Cells[2].Value.ToString());
-                    int no_manager = Convert.ToInt32(row.Cells[3].Value.ToString());
-                    int no_recept = Convert.ToInt32(row.Cells[4].Value.ToString());
-                    int no_janitor = Convert.ToInt32(row.Cells[5].Value.ToString());
-                    try
+                    if (!row.IsNewRow)
                     {
-                        setting.addShift(set_num, name, time_start, time_end, no_manager, no_recept, no_janitor);
-                    }
-                    catch(SqlException ex)
-                    {
-                        if(ex.Errors[0].Class == 16)
+                        string name = row.Cells[0].Value.ToString();
+                        TimeSpan time_start = TimeSpan.Parse(row.Cells[1].Value.ToString());
+                        TimeSpan time_end = TimeSpan.Parse(row.Cells[2].Value.ToString());
+                        int no_manager = Convert.ToInt32(row.Cells[3].Value.ToString());
+                        int no_recept = Convert.ToInt32(row.Cells[4].Value.ToString());
+                        int no_janitor = Convert.ToInt32(row.Cells[5].Value.ToString());
+                        try
                         {
-                           MessageBox.Show(ex.Message, "Error Add Setting", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                           return;
+                            setting.addShift(set_num, name, time_start, time_end, no_manager, no_recept, no_janitor);
+                        }
+                        catch (SqlException ex)
+                        {
+                            if (ex.Errors[0].Class == 16)
+                            {
+                                MessageBox.Show(ex.Message, "Error Add Setting", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
                         }
                     }
                 }
+                MessageBox.Show("Added Setting", "Add Setting", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            MessageBox.Show("Added Setting", "Add Setting", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void generateSchedule_BT_Click(object sender, EventArgs e)
